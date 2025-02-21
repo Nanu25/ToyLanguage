@@ -54,7 +54,27 @@ ToyLanguage is a fully featured interpreter for a custom-designed, toy programmi
    cd toylanguage
 
 3. **Compile and run:**
-   mvn compile
-  mvn exec:java -Dexec.mainClass="ToyLanguageApp"
+   -mvn compile
+   -mvn exec:java -Dexec.mainClass="ToyLanguageApp"
+
+
+## Photos
+
+### Program Selection  
+At the beginning, you can select a program to run.  
+![Program Selection]https://github.com/Nanu25/ToyLanguage/blob/main/ex.png
+
+### Step-by-Step Execution  
+You can see the program's execution step by step along with all the details: execution stack, symbol table, semaphore table, and more.  
+![Execution Details](photo2.png)
+
+### Viewing Different Program States  
+You can change the program state IDs to inspect each one's execution stack, symbol table, and other details.  
+![Program State Selection](photo3.png)
+
+### Program Completion  
+When the program is finished, the "Run" button has no effect.  
+![Program Completion](photo4.png)
+
 
 
