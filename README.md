@@ -60,19 +60,19 @@ ToyLanguage is a fully featured interpreter for a custom-designed, toy programmi
 
 ## Photos
 
-### Program Selection  
+### 🟢 1. Program Selection  
 At the beginning, you can select a program to run.  
 ![Program Selection](https://github.com/Nanu25/ToyLanguage/blob/main/ex.png)
 
-### Step-by-Step Execution  
+### 🔄 2. Step-by-Step Execution  
 You can see the program's execution step by step along with all the details: execution stack, symbol table, semaphore table, and more.  
 ![Execution Details](https://github.com/Nanu25/ToyLanguage/blob/main/prgrun.png)
 
-### Viewing Different Program States  
+### 🔍 3. Viewing Different Program States  
 You can change the program state IDs to inspect each one's execution stack, symbol table, and other details.  
-![Program State Selection](photo3.png)
+![Program State Selection](https://github.com/Nanu25/ToyLanguage/blob/main/threadchange.png)
 
-### Program Completion  
+### ✅ 4. Program Completion  
 When the program is finished, the "Run" button has no effect.  
 ![Program Completion](https://github.com/Nanu25/ToyLanguage/blob/main/final.png)
 
