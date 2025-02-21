@@ -63,10 +63,6 @@ public class Controller {
     }
 
 
-    Map<Integer, Value> safeGarbageCollector1(List<Integer> symTableAddr, Map<Integer,Value> heap){
-        return heap.entrySet().stream()
-                .filter(e->symTableAddr.contains(e.getKey())).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
-    }
 
     Map<Integer, Value> conservativeGarbageCollector(List<Integer> addresses, Map<Integer, Value> heap) {
         return heap.entrySet().stream()
@@ -75,49 +71,6 @@ public class Controller {
     }
 
 
-//    public void allStep() {
-//        PrgState prg = repo.getCurPrg();
-//        repo.logPrgStateExec();
-//        while (!prg.getStk().isEmpty()) {
-//
-//            oneStep(prg);
-//            if(displayFlag == true)
-//                System.out.println(prg);
-////            prg.getHeap().setContent(
-////                    unsafeGarbageCollector(
-////                            getAddrFromSymTable(prg.getSymTable().getContent().values()),
-////                            prg.getHeap().getContent()
-////                    )
-////            );
-//
-//            prg.getHeap().setContent(
-//                    safeGarbageCollector1(
-//                            getAllAddresses1(prg.getSymTable().getContent().values(), prg.getHeap()),
-//                            prg.getHeap().getContent()));
-//
-//            repo.logPrgStateExec();
-//        }
-//    }
-//    public void allStep() throws MyException {
-//        PrgState prg = repo.getCurPrg();
-//        repo.logPrgStateExec(prg);
-//        try {
-//            while (!prg.getStk().isEmpty()) {
-//                prg.oneStep();
-//                repo.logPrgStateExec(prg);
-//                if (displayFlag == true)
-//                    System.out.println(prg);
-//                prg.getHeap().setContent(
-//                        safeGarbageCollector1(
-//                                getAllAddresses1(prg.getSymTable().getContent().values(), prg.getHeap()),
-//                                prg.getHeap().getContent()));
-//                repo.logPrgStateExec(prg);
-//            }
-//        }catch (MyException e){
-//            throw new MyException(e.getMessage());
-//        }
-//    }
-//
     public void allStep() throws MyException, InterruptedException {
         executor = Executors.newFixedThreadPool(2);
         List<PrgState> prgList = removeCompletedPrg(repo.getPrgList());
@@ -136,39 +89,12 @@ public class Controller {
         executor.shutdownNow();
         repo.setPrgList(prgList);
     }
-//
-//
+
     List <PrgState> removeCompletedPrg(List<PrgState> inPrgList){
         return inPrgList.stream()
                 .filter(p->p.isNotCompleted())
                 .collect(Collectors.toList());
     }
-
-
-//    void oneStepForAllPrg(List<PrgState> prgList) throws MyException, InterruptedException {
-//        prgList.forEach(prg -> {repo.logPrgStateExec(prg);});
-//        List<Callable<PrgState>> callList = prgList.stream()
-//                .map((PrgState p) -> (Callable<PrgState>)(() -> {return p.oneStep();}))
-//                .collect(Collectors.toList());
-//
-//        List<PrgState> newPrgList = executor.invokeAll(callList).stream()
-//                .map(future -> {
-//                    try {
-//                        return future.get();
-//                    }  catch (ExecutionException e) {
-//                        throw new ExecutorException(e.toString());
-//                    } catch (InterruptedException e) {
-//                        throw new RuntimeException(e);
-//                    }
-//                })
-//                .filter(p -> p != null)
-//                .collect(Collectors.toList());
-//
-//
-//        prgList.addAll(newPrgList);
-//        prgList.forEach(prg -> {repo.logPrgStateExec(prg);});
-//        repo.setPrgList(prgList);
-//    }
 
     public void executeOneStep() throws MyException, InterruptedException {
         List<PrgState> prgList = removeCompletedPrg(repo.getPrgList());
@@ -199,21 +125,6 @@ public class Controller {
         prgList.forEach(prgState -> repo.logPrgStateExec(prgState));
         repo.setPrgList(prgList);
     }
-
-//    public void allStep() throws MyException, InterruptedException {
-//        this.executor = Executors.newFixedThreadPool(2);
-//        while (true) {
-//            List<PrgState> prgList = removeCompletedPrg(repo.getPrgList());
-//            if (prgList.isEmpty()) {
-//                break;
-//            }
-//            executeOneStep();
-//        }
-//
-//        executor.shutdownNow();
-//        repo.setPrgList(removeCompletedPrg(repo.getPrgList()));
-//
-//    }
 
     public void displayCurrentState() {
         repo.getPrgList().forEach(prg -> System.out.println(prg + "\n"));
