@@ -87,14 +87,15 @@ public class ToyLanguageController {
 
     public ToyLanguageController() {
     }
-
     @FXML
     public void initialize() {
-        // Make sure this line matches exactly:
+        // Set default text for TextArea
+        outputArea.setText("Program output will appear here...");
+
+        // Configure table columns
         addressColumn.setCellValueFactory(cellData ->
                 new SimpleObjectProperty<>(cellData.getValue().getKey()));
 
-        // This is the critical line that needs to be fixed:
         valueColumn.setCellValueFactory(p -> {
             Value val = p.getValue().getValue();
             return new SimpleStringProperty(val.toString());
@@ -106,7 +107,6 @@ public class ToyLanguageController {
         semaphoreIndex.setCellValueFactory(cellData ->
                 new ReadOnlyObjectWrapper<>(cellData.getValue().getKey()));
 
-        // Column to display the N1 value
         semaphoreValue.setCellValueFactory(cellData ->
                 new ReadOnlyObjectWrapper<>(cellData.getValue().getValue().getKey()));
 
@@ -116,13 +116,29 @@ public class ToyLanguageController {
         lockValueColumn.setCellValueFactory(cellData ->
                 new SimpleIntegerProperty(cellData.getValue().getValue()).asObject());
 
-        // Column to display the List<Integer> as a string
         semaphoreListValues.setCellValueFactory(cellData ->
                 new ReadOnlyObjectWrapper<>(cellData.getValue().getValue().getValue().toString()));
-        // Add initial messages to lists
-        outListView.getItems().add("Output: ");
-        fileTableListView.getItems().add("File Table: ");
-        exeStackListView.getItems().add("ExeStack: ");
+
+        // Add placeholders for empty tables
+        heapTable.setPlaceholder(new Label("Heap is empty"));
+        variableTable.setPlaceholder(new Label("No variables defined"));
+        semaphoreTable.setPlaceholder(new Label("No semaphores active"));
+        lockTable.setPlaceholder(new Label("No locks active"));
+
+        // Set default text for text field
+        noOfPrgStates.setPromptText("0");
+
+        // Add initial messages to list views
+        outListView.getItems().clear();
+        outListView.getItems().add("Output will be displayed here...");
+
+        fileTableListView.getItems().clear();
+        fileTableListView.getItems().add("File Table: No files opened");
+
+        prgStateIdsListView.setPlaceholder(new Label("No program states running"));
+
+        exeStackListView.getItems().clear();
+        exeStackListView.getItems().add("Execution stack will be displayed here...");
     }
 
     @FXML
