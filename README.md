@@ -48,7 +48,7 @@ ToyLanguage is a fully featured interpreter for a custom-designed, toy programmi
 ### Installation & Running
 
 1. **Clone the repository:** 
-   git clone [https://github.com/yourusername/toylanguage.git](https://github.com/Nanu25/ToyLanguage)
+   git clone https://github.com/Nanu25/ToyLanguage
 
 2. **Navigate to the project directory:**
    cd toylanguage
