@@ -62,7 +62,7 @@ ToyLanguage is a fully featured interpreter for a custom-designed, toy programmi
 
 ### Program Selection  
 At the beginning, you can select a program to run.  
-![Program Selection]https://github.com/Nanu25/ToyLanguage/blob/main/ex.png
+https://github.com/Nanu25/ToyLanguage/blob/main/ex.png
 
 ### Step-by-Step Execution  
 You can see the program's execution step by step along with all the details: execution stack, symbol table, semaphore table, and more.  
